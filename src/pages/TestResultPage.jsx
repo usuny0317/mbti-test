@@ -1,5 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 const TestResultPage = () => {
-  return <div>TestResultPage</div>;
+  const navigate = useNavigate();
+  return (
+    <div>
+      TestResultPage
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        메인으로 돌아가기
+      </button>
+    </div>
+  );
 };
 
 export default TestResultPage;
