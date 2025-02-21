@@ -1,19 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 const HOME = () => {
-  const [post, setPost] = useState(null);
-  useEffect(() => {
-    const post = async () => {
-      try {
-        const data = await axios("https://www.nbcamp-react-auth.link");
-        setPost(data);
-      } catch (err) {
-        console.log("err=>", err);
-      }
-    };
-  });
   const navigate = useNavigate();
   return (
     <div>
@@ -21,6 +8,10 @@ const HOME = () => {
       <h4>테스트를 통해 결과를 확인해보세요! </h4>
       <button
         onClick={() => {
+          const isAuthenticated = localStorage.getItem("accessToken");
+          if (!isAuthenticated) {
+            alert("로그인이 필요합니다.");
+          }
           navigate("/test");
         }}
       >
@@ -29,13 +20,22 @@ const HOME = () => {
 
       <button
         onClick={() => {
-          navigate("/login");
+          const isAuthenticated = localStorage.getItem("accessToken");
+          if (isAuthenticated) {
+            alert("로그인 되어있습니다.");
+          } else {
+            navigate("/login");
+          }
         }}
       >
         로그인하기
       </button>
       <button
         onClick={() => {
+          const isAuthenticated = localStorage.getItem("accessToken");
+          if (!isAuthenticated) {
+            alert("로그인이 필요합니다.");
+          }
           navigate("/profile");
         }}
       >
