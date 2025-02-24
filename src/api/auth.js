@@ -1,7 +1,6 @@
 import axios from "axios";
 
-/* const API_URL = "https://www.nbcamp-react-auth.link"; */
-const API_URL = "https://shine-silk-tilapia.glitch.me";
+const API_URL = "https://www.nbcamp-react-auth.link";
 
 //회원가입
 export const register = async (userData) => {
