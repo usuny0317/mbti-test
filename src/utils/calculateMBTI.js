@@ -1,3 +1,5 @@
+import { questions } from "../data/questions";
+
 export const mbtiDescriptions = {
   ENFJ: "ENFJ: 이타주의자의 끝판왕! ENFJ는 사람을 돕는 데에 진심인 편이에요. 이들은 모든 사람에게 좋은 사람이 되고자 하며, 자기 자신보다 남을 더 우선시하는 슈퍼히어로 같은 존재예요. 친구들이 고민 상담을 할 때마다 차 한 잔 준비해놓고 기다리고 있을지도 몰라요. 그러나 가끔 너무 많은 걸 감당하려고 해서 자신을 잊어버리기도 해요. 그래서 가끔은 '나도 휴식이 필요해!'라고 외칠 필요가 있어요.",
   INFJ: "INFJ: 철학자의 마음을 가진 예언자! INFJ는 세상의 모든 비밀을 알고 싶어하는 사람들입니다. 깊은 생각과 세심한 배려로 가득 찬 마음을 가진 이들은 마치 자신이 세상의 진실을 알고 있는 듯한 착각을 불러일으키죠. 그러나 이들이 지나치게 미래에만 집중하다 보면 현재를 놓칠 수 있어요. 하지만 언제나 주변 사람들을 위해 최선을 다하는 진정한 친구들이랍니다.",
@@ -18,7 +20,7 @@ export const mbtiDescriptions = {
 };
 
 export const calculateMBTI = (answers) => {
-  /* // 각 MBTI 유형에 대한 점수 초기화
+  // 각 MBTI 유형에 대한 점수 초기화
   const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
   // answers 배열을 순회하며 점수 누적
@@ -39,11 +41,11 @@ export const calculateMBTI = (answers) => {
     scores.S >= scores.N ? "S" : "N"
   }${scores.T >= scores.F ? "T" : "F"}${scores.J >= scores.P ? "J" : "P"}`;
 
-  return result; */
+  return result;
 };
 
 // 사용 예시:
-const answers = [
+/* const answers = [
   { type: "E/I", answer: "E" },
   { type: "S/N", answer: "S" },
   { type: "T/F", answer: "T" },
@@ -52,4 +54,4 @@ const answers = [
 ];
 
 const mbtiResult = calculateMBTI(answers);
-console.log("MBTI 결과:", mbtiResult); // 예: "MBTI 결과: ESTJ"
+console.log("MBTI 결과:", mbtiResult); // 예: "MBTI 결과: ESTJ" */
