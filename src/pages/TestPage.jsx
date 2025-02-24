@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import TestForm from "../components/TestForm";
-import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
+import { calculateMBTI, mbtiDescriptions } from "../utils/calculateMBTI";
 import { createTestResult } from "../api/testResults";
 import { useNavigate } from "react-router-dom";
 

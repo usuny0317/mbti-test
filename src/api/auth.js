@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "https://www.nbcamp-react-auth.link";
-//json 서버 baseURL: "http:localhost:5000"
+//json 서버 baseURL: "http:localhost:4000"
 
 //회원가입
 export const register = async (userData) => {
@@ -24,7 +24,6 @@ export const updateProfile = async (formData) => {
   const token = localStorage.getItem("accessToken");
   const headers = {
     //"Content-Type": "multipart/form-data",
-
     Authorization: `Bearer ${token}`,
   };
 

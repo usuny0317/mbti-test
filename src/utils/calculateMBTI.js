@@ -18,7 +18,7 @@ export const mbtiDescriptions = {
 };
 
 export const calculateMBTI = (answers) => {
-  // 각 MBTI 유형에 대한 점수 초기화
+  /* // 각 MBTI 유형에 대한 점수 초기화
   const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
   // answers 배열을 순회하며 점수 누적
@@ -39,7 +39,7 @@ export const calculateMBTI = (answers) => {
     scores.S >= scores.N ? "S" : "N"
   }${scores.T >= scores.F ? "T" : "F"}${scores.J >= scores.P ? "J" : "P"}`;
 
-  return result;
+  return result; */
 };
 
 // 사용 예시:

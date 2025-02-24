@@ -19,18 +19,16 @@ const Router = () => {
     return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
   };
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/test" element={<TestPage />} />
-          <Route path="/results" element={<TestResultPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/test" element={<TestPage />} />
+        <Route path="/results" element={<TestResultPage />} />
+      </Route>
+    </Routes>
   );
 };
 
