@@ -44,6 +44,16 @@ const Navbar = () => {
       >
         프로필가기
       </Link>
+      <Link
+        to="/results"
+        onClick={() => {
+          if (!isAuthenticated) {
+            alert("로그인이 필요합니다.");
+          }
+        }}
+      >
+        결과 페이지로 가기
+      </Link>
     </nav>
   );
 };

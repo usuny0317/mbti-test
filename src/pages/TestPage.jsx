@@ -4,21 +4,33 @@ import { calculateMBTI, mbtiDescriptions } from "../utils/calculateMBTI";
 import { createTestResult } from "../api/testResults";
 import { useNavigate } from "react-router-dom";
 
-const TestPage = ({ user }) => {
+const TestPage = () => {
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
 
   const handleTestSubmit = async (answers) => {
     const mbtiResult = calculateMBTI(answers);
+    const userid = localStorage.getItem("id");
+    const nickname = localStorage.getItem("nickname");
     setResult(mbtiResult);
 
     // 결과 서버에 저장해야함.
-
-    //값 전달
-    navigate("/results", {
-      state: { mbti: mbtiResult, desc: mbtiDescriptions[mbtiResult] },
-    });
-    /* Test 결과는 mbtiResult 라는 변수에 저장이 됩니다. 이 데이터를 어떻게 API 를 이용해 처리 할 지 고민해주세요. */
+    try {
+      const response = createTestResult({
+        nickname: nickname,
+        mbti: mbtiResult,
+        desc: mbtiDescriptions[mbtiResult],
+        visibility: true,
+        userid: userid,
+      });
+      if (!response) {
+        throw "테스트 값에 오류가 있습니다!";
+      } else {
+        ("저장 됐습니다!");
+      }
+    } catch (err) {
+      alert("테스트 오류!" + err);
+    }
   };
 
   const handleNavigateToResults = () => {

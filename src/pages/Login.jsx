@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { login } from "../api/auth";
+import { getUserProfile, login } from "../api/auth";
 import { useState } from "react";
 
 const Login = () => {
@@ -21,6 +21,15 @@ const Login = () => {
       if (result.success) {
         alert("로그인 되었습니다.");
         localStorage.setItem("accessToken", result.accessToken);
+        //로그인하면 유저 정도도 저장해둘까?
+        try {
+          const userdata = await getUserProfile(result.accessToken);
+          localStorage.setItem("id", userdata.id);
+          localStorage.setItem("nickname", userdata.nickname);
+        } catch (err) {
+          alert("유저 정보 가져오기 실패!" + err);
+        }
+
         navigate("/");
       } else throw "실패!";
     } catch (err) {
