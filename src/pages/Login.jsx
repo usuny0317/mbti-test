@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 w-full">
-      <div className="flex  flex-col items-center justify-center min-h-screen bg-blue-100 text-black ">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-blue-100 text-black ">
         <h1 className="text-3xl font-bold mb-6">로그인</h1>
         <form
           onSubmit={handleForm}
