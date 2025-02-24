@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://www.nbcamp-react-auth.link";
-//json 서버 baseURL: "http:localhost:4000"
+/* const API_URL = "https://www.nbcamp-react-auth.link"; */
+const API_URL = "https://shine-silk-tilapia.glitch.me";
 
 //회원가입
 export const register = async (userData) => {
@@ -18,10 +18,8 @@ export const login = async (userData) => {
 // 유저 정보 받기
 export const getUserProfile = async (token) => {
   if (!token) {
-    console.error("❌ 토큰이 없음!");
     throw new Error("인증 토큰이 없습니다!");
   }
-
   try {
     const response = await axios.get(`${API_URL}/user`, {
       headers: {
@@ -29,9 +27,8 @@ export const getUserProfile = async (token) => {
       },
     });
     return response.data;
-  } catch (error) {
-    console.error("유저 정보 불러오기 실패1:", error);
-    throw error;
+  } catch (err) {
+    alert("유저 정보를 받아오지 못했습니다!" + err);
   }
 };
 

@@ -23,7 +23,7 @@ const Signup = () => {
         navigate("/login");
       } else throw "실패!";
     } catch (err) {
-      console.log("회원가입 실패:" + err);
+      alert("회원가입 실패!!:" + err);
     }
   };
 

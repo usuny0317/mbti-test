@@ -8,17 +8,21 @@ const Navbar = () => {
   useEffect(() => {
     // localStorage 값이 변경될 때마다 상태 업데이트
     const handleStorageChange = () => {
-      setIsAuthenticated(!!localStorage.getItem("accessToken"));
+      let item = localStorage.getItem("accessToken");
+      setIsAuthenticated(!!item);
     };
-
+    // localstorage 리스너 달아서 변경되는 거 감지하는 코드라고 하는데..
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
+  //state로 두면 랜더링 되는 게 아니었나! 이상하게 진행되지 않음!
 
+  //로그아웃
   const handleLogout = () => {
     localStorage.clear();
-    setIsAuthenticated(false); // 상태 업데이트
+    setIsAuthenticated(false);
   };
+
   return (
     <nav className="fixed top-0 left-0 w-full bg-blue-200 text-black shadow-md p-4 flex justify-between items-center ">
       <Link to="/" className="text-xl font-bold hover:text-blue-300">

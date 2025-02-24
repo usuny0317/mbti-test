@@ -29,27 +29,13 @@ const HOME = () => {
           className="w-64 py-3 bg-blue-300 text-black font-semibold rounded-xl hover:bg-blue-400 transition"
           onClick={() => {
             const isAuthenticated = localStorage.getItem("accessToken");
-            if (isAuthenticated) {
-              alert("로그인 되어있습니다.");
-            } else {
-              navigate("/login");
-            }
-          }}
-        >
-          로그인하기
-        </button>
-
-        <button
-          className="w-64 py-3 bg-blue-300 text-black font-semibold rounded-xl hover:bg-blue-400 transition"
-          onClick={() => {
-            const isAuthenticated = localStorage.getItem("accessToken");
             if (!isAuthenticated) {
               alert("로그인이 필요합니다.");
             }
-            navigate("/profile");
+            navigate("/results");
           }}
         >
-          마이페이지 이동하기
+          결과 모아 보기
         </button>
       </div>
     </div>
