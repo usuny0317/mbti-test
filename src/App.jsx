@@ -3,10 +3,12 @@ import Router from "./route/Router";
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen w-full">
       <Navbar />
-      <Router />
-    </>
+      <div className="flex-grow w-full">
+        <Router />
+      </div>
+    </div>
   );
 }
 

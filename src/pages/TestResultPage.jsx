@@ -8,23 +8,19 @@ import { useEffect, useState } from "react";
 
 const TestResultPage = () => {
   const navigate = useNavigate();
-
   const [testResults, setTestResults] = useState([]);
   const userid = localStorage.getItem("id");
 
-  //로그인된 값 가져오기기
-
-  //데이터 가져오기기
+  //데이터 불러오기
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getTestResults();
-        setTestResults(data); // 상태 업데이트
-      } catch (error) {
-        console.error("데이터 불러오기 실패:", error);
+        setTestResults(data);
+      } catch (err) {
+        alert("데이터를 불러오지 못했습니다!!:" + err);
       }
     };
-
     fetchData();
   }, []);
 
@@ -32,72 +28,75 @@ const TestResultPage = () => {
   const handledelete = async (id) => {
     try {
       const response = await deleteTestResult(id);
-      if (!response) {
-        throw "응답이 없습니다!";
-      } else {
-        alert("삭제 되었습니다!");
-      }
+      if (!response) throw "응답이 없습니다!";
+      alert("삭제 되었습니다!");
+      setTestResults(testResults.filter((result) => result.id !== id));
     } catch (err) {
       alert("삭제에 실패했습니다!!" + err);
     }
   };
-  //공개 여부 핸들러
+
+  //숨기기/ 보이기 핸들러
   const handlevisibility = async (id, visibility) => {
     try {
       const response = await updateTestResultVisibility(id, visibility);
-      if (!response) {
-        throw "응답이 없습니다!";
-      } else {
-        alert("변경 되었습니다!");
-      }
+      if (!response) throw "응답이 없습니다!";
+      alert("변경 되었습니다!");
+      setTestResults(
+        testResults.map((result) =>
+          result.id === id ? { ...result, visibility: !visibility } : result
+        )
+      );
     } catch (err) {
       alert("공개 여부 변경 실패!!: " + err);
     }
   };
 
   return (
-    <div>
-      <div>
-        {testResults.map(
-          //id 같은 애들 보이기
-          (da) =>
-            userid === da.userid ? (
-              <div key={da.id}>
-                <div>{da.mbti}</div>
-                <div>{da.desc}</div>
+    <div className="min-h-screen bg-blue-100 flex flex-col items-center pt-20">
+      <h1 className="text-4xl font-bold text-black mb-8">테스트 결과</h1>
+      <div className="w-full max-w-2xl space-y-6">
+        {testResults.map((da) =>
+          userid === da.userid ? (
+            <div
+              key={da.id}
+              className="p-4 bg-white shadow-lg rounded-xl border border-gray-200"
+            >
+              <div className="text-xl font-semibold text-blue-600 mb-2">
+                {da.mbti}
+              </div>
+              <div className="text-gray-700 mb-4">{da.desc}</div>
+              <div className="flex space-x-4">
                 <button
-                  onClick={() => {
-                    handlevisibility(da.id, da.visibility);
-                  }}
+                  className="py-2 px-4 bg-yellow-300 text-black rounded-lg hover:bg-yellow-400 transition"
+                  onClick={() => handlevisibility(da.id, da.visibility)}
                 >
-                  숨기기
+                  {da.visibility ? "숨기기" : "보이기"}
                 </button>
                 <button
-                  onClick={() => {
-                    handledelete(da.id);
-                  }}
+                  className="py-2 px-4 bg-purple-300 text-black rounded-lg hover:bg-purple-400 transition"
+                  onClick={() => handledelete(da.id)}
                 >
                   삭제하기
                 </button>
               </div>
-            ) : da.visibility ? (
-              // 아이디 다른 애들인데.. 이중에 visibility false인 애들
-              // 보이면 안된다..
-              <div key={da.id}>
-                <div>{da.mbti}</div>
-                <div>{da.desc}</div>
+            </div>
+          ) : da.visibility ? (
+            <div
+              key={da.id}
+              className="p-4 bg-white shadow-lg rounded-xl border border-gray-200"
+            >
+              <div className="text-xl font-semibold text-blue-600 mb-2">
+                {da.mbti}
               </div>
-            ) : (
-              <> </>
-            )
-
-          //id 랑 토큰을 가져온 id랑 같으면 삭제/ 비공개 버튼 나타내기
+              <div className="text-gray-700 mb-4">{da.desc}</div>
+            </div>
+          ) : null
         )}
       </div>
       <button
-        onClick={() => {
-          navigate("/");
-        }}
+        className="mt-8 py-3 px-6 bg-blue-300 text-black font-semibold rounded-xl hover:bg-blue-400 transition"
+        onClick={() => navigate("/")}
       >
         메인으로 돌아가기
       </button>
