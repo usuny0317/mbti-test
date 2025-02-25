@@ -1,4 +1,5 @@
 // useAuth.js (Custom Hook)
+// 네비게이션 바에 있던 부분 옮겨왔음
 import { useState, useEffect } from "react";
 
 export function useAuth() {
