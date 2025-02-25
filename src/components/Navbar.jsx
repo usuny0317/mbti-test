@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 const Navbar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("accessToken")
-  );
-
-  useEffect(() => {
-    // localStorage 값이 변경될 때마다 상태 업데이트
-    const handleStorageChange = () => {
-      let item = localStorage.getItem("accessToken");
-      setIsAuthenticated(!!item);
-    };
-    // localstorage 리스너 달아서 변경되는 거 감지하는 코드라고 하는데..
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
-  //state로 두면 랜더링 되는 게 아니었나! 이상하게 진행되지 않음!
+  const { isAuthenticated, logout } = useAuth();
 
   //로그아웃
   const handleLogout = () => {
     localStorage.clear();
-    setIsAuthenticated(false);
+    logout();
   };
 
   return (

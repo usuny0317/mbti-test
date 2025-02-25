@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { getUserProfile, login } from "../api/auth";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+
+  const { login: login1 } = useAuth();
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -29,6 +32,7 @@ const Login = () => {
           alert("유저 정보 가져오기 실패!" + err);
         }
         navigate("/");
+        login1();
       } else throw "실패!";
     } catch (err) {
       alert("로그인 실패!" + err);
