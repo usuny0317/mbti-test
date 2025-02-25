@@ -63,7 +63,7 @@ const TestResultPage = () => {
               className="p-4 bg-white shadow-lg rounded-xl border border-gray-200"
             >
               <div className="text-xl font-semibold text-blue-600 mb-2">
-                {da.mbti}, {da.userid}
+                {da.mbti}, {da.nickname}
               </div>
               <div className="text-gray-700 mb-4">{da.desc}</div>
               <div className="flex space-x-4">
@@ -87,7 +87,7 @@ const TestResultPage = () => {
               className="p-4 bg-white shadow-lg rounded-xl border border-gray-200"
             >
               <div className="text-xl font-semibold text-blue-600 mb-2">
-                {da.mbti}, {da.userid}
+                {da.mbti}, {da.nickname}
               </div>
               <div className="text-gray-700 mb-4">{da.desc}</div>
             </div>
